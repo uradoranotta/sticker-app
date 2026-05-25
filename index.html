@@ -88,34 +88,11 @@
 
   aspect-ratio: 1 / 1;
 
-  display: flex;
-
-  flex-direction: column;
-
-  align-items: center;
-
-  justify-content: flex-start;
+  position: relative;
 
   box-sizing: border-box;
 
   overflow: hidden;
-
-  padding-top: 4px;
-}
-
-    .color-button {
-
-  width: 36px;
-
-  height: 36px;
-
-  border-radius: 50%;
-
-  border: none;
-
-  cursor: pointer;
-
-  flex-shrink: 0;
 }
 
     .color1 { background: #ffe5e5; }
@@ -245,7 +222,14 @@ function renderCalendar() {
       document.createElement("div");
 
     dateText.innerText = i;
-    dateText.style.marginBottom = "4px";
+     dateText.style.marginBottom = "4px";
+     dateText.style.position = "absolute";
+
+     dateText.style.top = "4px";
+
+     dateText.style.left = "6px";
+
+     dateText.style.fontSize = "14px";
 
     day.appendChild(dateText);
 
@@ -254,19 +238,23 @@ function renderCalendar() {
       const sticker =
         document.createElement("div");
 
-      sticker.style.width = "24px";
-      sticker.style.height = "24px";
+        sticker.style.width = "22px";
 
-      sticker.style.flexShrink = "0";
+sticker.style.height = "22px";
 
-      sticker.style.borderRadius = "50%";
+sticker.style.borderRadius = "50%";
 
-      sticker.style.backgroundColor =
-        savedData[i].color;
+sticker.style.backgroundColor =
+  selectedColor;
 
-      sticker.style.marginTop = "5px";
+sticker.style.position = "absolute";
 
-      sticker.style.alignSelf = "center";
+sticker.style.bottom = "8px";
+
+sticker.style.left = "50%";
+
+sticker.style.transform =
+  "translateX(-50%)";
 
       day.appendChild(sticker);
     }
