@@ -108,16 +108,11 @@
 
 .day {
   position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-
   border: 1px solid #ccc;
   border-radius: 10px;
   background: white;
-
   aspect-ratio: 1 / 1;
+  overflow: hidden;
 }
 
 .dateText {
@@ -239,16 +234,20 @@ function renderCalendar() {
 day.className = "day";
 
 const dateText = document.createElement("div");
-dateText.className = "dateText";
+
 dateText.innerText = i;
+
+dateText.style.position = "absolute";
+dateText.style.top = "4px";
+dateText.style.left = "6px";
+dateText.style.fontSize = "14px";
+dateText.style.zIndex = "2";
 
 day.appendChild(dateText);
 
     if (savedData[String(i)]) {
 
-      const sticker = document.createElement("div");
-
-sticker.className = "sticker";
+     const sticker = document.createElement("div");
 
 sticker.style.width = "22px";
 sticker.style.height = "22px";
@@ -256,10 +255,9 @@ sticker.style.borderRadius = "50%";
 sticker.style.backgroundColor =
   savedData[String(i)].color;
 
-/* ★完全分離配置（これが安定版） */
 sticker.style.position = "absolute";
-sticker.style.left = "50%";
 sticker.style.bottom = "6px";
+sticker.style.left = "50%";
 sticker.style.transform = "translateX(-50%)";
 
 day.appendChild(sticker);
