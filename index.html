@@ -242,12 +242,11 @@ sticker.style.borderRadius = "50%";
 sticker.style.backgroundColor =
   savedData[String(i)].color;
 
-/* ★配置（ここが重要・完全安定版） */
+/* ★スマホ安定・完全中央固定 */
 sticker.style.position = "absolute";
-sticker.style.bottom = "6px";
-sticker.style.left = "0";
-sticker.style.right = "0";
-sticker.style.margin = "0 auto";
+sticker.style.left = "50%";
+sticker.style.top = "50%";
+sticker.style.transform = "translate(-50%, 20%)"; 
 
 day.appendChild(sticker);
     }
