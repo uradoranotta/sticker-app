@@ -243,6 +243,18 @@ function renderCalendar() {
     const dateText =
       document.createElement("div");
 
+      dateText.innerText = i;
+
+dateText.style.position = "absolute";
+
+dateText.style.top = "4px";
+
+dateText.style.left = "6px";
+
+dateText.style.fontSize = "14px";
+
+dateText.style.zIndex = "2";
+
     dateText.innerText = i;
      dateText.style.marginBottom = "4px";
      dateText.style.position = "absolute";
@@ -271,9 +283,11 @@ selectedColor;
 
 sticker.style.position = "absolute";
 
-sticker.style.bottom = "8px";
+sticker.style.bottom = "6px";
 
 sticker.style.left = "50%";
+
+sticker.style.zIndex = "1";
 
 sticker.style.transform =
   "translateX(-50%)";
@@ -282,7 +296,21 @@ sticker.style.transform =
     }
 
     day.onclick = () => {
-    const targetDate = new Date();
+
+  const monthKey =
+    getMonthKey(currentYear, currentMonth);
+
+  const savedData =
+    JSON.parse(localStorage.getItem(monthKey)) || {};
+
+  if (savedData[String(i)]) {
+
+    alert("この日はすでに記録済みです（変更できません）");
+
+    return;
+  }
+
+  // 以下そのまま
 
 targetDate.setDate(targetDate.getDate() - 1);
 
@@ -301,12 +329,20 @@ if (!isTargetDate) {
   return;
 }
 
-      if (savedData[i]) {
-        return;
-      }
+      
 
-      const sticker =
+const oldSticker =
+  day.querySelector(".sticker");
+
+if (oldSticker) {
+
+  oldSticker.remove();
+}      
+
+const sticker =
         document.createElement("div");
+
+        sticker.className = "sticker";
 
       sticker.style.width = "24px";
       sticker.style.height = "24px";
@@ -322,10 +358,12 @@ if (!isTargetDate) {
 
       day.appendChild(sticker);
 
-      savedData[i] = {
-        color: selectedColor,
-        value: selectedValue
-      };
+      savedData[String(i)] = {
+
+  color: String(selectedColor),
+
+  value: Number(selectedValue)
+};
 
       localStorage.setItem(
         monthKey,
