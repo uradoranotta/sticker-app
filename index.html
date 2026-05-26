@@ -30,19 +30,11 @@
       margin-bottom: 20px;
     }
 
-    .calendar {
-
+    #calendar {
   display: grid;
-
   grid-template-columns: repeat(7, 1fr);
-
-  gap: 5px;
-
-  margin-top: 10px;
-
+  gap: 4px;
   width: 100%;
-
-  box-sizing: border-box;
 }
 
 .colors {
@@ -93,22 +85,6 @@
   padding: 5px;
 }
 
-   .day {
-
-  border: 1px solid #ccc;
-
-  border-radius: 10px;
-
-  background: white;
-
-  aspect-ratio: 1 / 1;
-
-  position: relative;
-
-  box-sizing: border-box;
-
-  overflow: hidden;
-}
 
     .color1 { background: #ffe5e5; }
     .color2 { background: #ffb3b3; }
@@ -128,6 +104,17 @@
   padding: 10px 15px;
   font-size: 18px;
   cursor: pointer;
+}
+
+.day {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background: white;
+
+  aspect-ratio: 1 / 1;
+
+  position: relative;
+  box-sizing: border-box;
 }
 
   </style>
@@ -212,8 +199,11 @@ function renderCalendar() {
 
   calendar.innerHTML = "";
 
-  monthTitle.innerText =
-    `${currentYear}年 ${currentMonth + 1}月`;
+  const monthKey =
+    getMonthKey(currentYear, currentMonth);
+
+  const savedData =
+    JSON.parse(localStorage.getItem(monthKey)) || {};
 
   const daysInMonth =
     new Date(currentYear, currentMonth + 1, 0).getDate();
@@ -221,149 +211,72 @@ function renderCalendar() {
   const firstDay =
     new Date(currentYear, currentMonth, 1).getDay();
 
-  for (let j = 0; j < firstDay; j++) {
+  monthTitle.innerText =
+    `${currentYear}年 ${currentMonth + 1}月`;
 
-    const empty = document.createElement("div");
-
-    calendar.appendChild(empty);
+  for (let i = 0; i < firstDay; i++) {
+    calendar.appendChild(document.createElement("div"));
   }
-
-  const monthKey =
-    getMonthKey(currentYear, currentMonth);
-
-  const savedData =
-    JSON.parse(localStorage.getItem(monthKey)) || {};
 
   for (let i = 1; i <= daysInMonth; i++) {
 
     const day = document.createElement("div");
-
     day.className = "day";
 
-    const dateText =
-      document.createElement("div");
-
-      dateText.innerText = i;
-
-dateText.style.position = "absolute";
-
-dateText.style.top = "4px";
-
-dateText.style.left = "6px";
-
-dateText.style.fontSize = "14px";
-
-dateText.style.zIndex = "2";
-
+    const dateText = document.createElement("div");
     dateText.innerText = i;
-     dateText.style.marginBottom = "4px";
-     dateText.style.position = "absolute";
-
-     dateText.style.top = "4px";
-
-     dateText.style.left = "6px";
-
-     dateText.style.fontSize = "14px";
-
     day.appendChild(dateText);
 
-    if (savedData[i]) {
+    if (savedData[String(i)]) {
 
-      const sticker =
-        document.createElement("div");
+      const sticker = document.createElement("div");
 
-        sticker.style.width = "22px";
+      sticker.style.width = "22px";
+      sticker.style.height = "22px";
+      sticker.style.borderRadius = "50%";
+      sticker.style.backgroundColor =
+        savedData[String(i)].color;
 
-sticker.style.height = "22px";
-
-sticker.style.borderRadius = "50%";
-
-sticker.style.backgroundColor = 
-selectedColor;
-
-sticker.style.position = "absolute";
-
+      sticker.style.position = "absolute";
 sticker.style.bottom = "6px";
-
 sticker.style.left = "50%";
-
-sticker.style.zIndex = "1";
-
-sticker.style.transform =
-  "translateX(-50%)";
+sticker.style.transform = "translateX(-50%)";
 
       day.appendChild(sticker);
     }
 
     day.onclick = () => {
-
-  const monthKey =
-    getMonthKey(currentYear, currentMonth);
-
-  const savedData =
-    JSON.parse(localStorage.getItem(monthKey)) || {};
-
-  if (savedData[String(i)]) {
-
-    alert("この日はすでに記録済みです（変更できません）");
-
-    return;
-  }
-
-  // 以下そのまま
-
+      const targetDate = new Date();
 targetDate.setDate(targetDate.getDate() - 1);
 
 const isTargetDate =
-
   i === targetDate.getDate() &&
-
   currentMonth === targetDate.getMonth() &&
-
   currentYear === targetDate.getFullYear();
 
 if (!isTargetDate) {
-
   alert("前日の日付だけ入力できます");
-
   return;
 }
 
-      
+      if (savedData[String(i)]) {
+        alert("この日はすでに記録済みです");
+        return;
+      }
 
-const oldSticker =
-  day.querySelector(".sticker");
+      const sticker = document.createElement("div");
 
-if (oldSticker) {
-
-  oldSticker.remove();
-}      
-
-const sticker =
-        document.createElement("div");
-
-        sticker.className = "sticker";
-
-      sticker.style.width = "24px";
-      sticker.style.height = "24px";
-
+      sticker.style.width = "22px";
+      sticker.style.height = "22px";
       sticker.style.borderRadius = "50%";
-
-      sticker.style.backgroundColor =
-        selectedColor;
-
-      sticker.style.marginTop = "5px";
-
-      sticker.style.alignSelf = "center";
+      sticker.style.backgroundColor = selectedColor;
 
       day.appendChild(sticker);
 
       savedData[String(i)] = {
-
-  color: String(selectedColor),
-
-  value: Number(selectedValue)
-};
+        color: selectedColor,
+        value: selectedValue
+      };
 
       localStorage.setItem(
         monthKey,
@@ -374,6 +287,7 @@ const sticker =
     calendar.appendChild(day);
   }
 }
+
 
 function changeMonth(direction) {
 
