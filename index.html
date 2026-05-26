@@ -285,20 +285,18 @@ if (!isTargetDate) {
 
       const sticker = document.createElement("div");
 
-      const sticker = document.createElement("div");
+     sticker.style.width = "22px";
+     sticker.style.height = "22px";
+     sticker.style.borderRadius = "50%";
+     sticker.style.backgroundColor =
+      selectedColor;
 
-sticker.style.width = "22px";
-sticker.style.height = "22px";
-sticker.style.borderRadius = "50%";
-sticker.style.backgroundColor =
-  selectedColor;
-
-/* ★これが不足している */
-sticker.style.position = "absolute";
-sticker.style.bottom = "6px";
-sticker.style.left = "50%";
-sticker.style.transform = "translateX(-50%)";
-sticker.style.zIndex = "2";
+      /* ★これが不足している */
+     sticker.style.position = "absolute";
+     sticker.style.bottom = "6px";
+     sticker.style.left = "50%";
+     sticker.style.transform = "translateX(-50%)";
+     sticker.style.zIndex = "2";
 
       day.appendChild(sticker);
 
