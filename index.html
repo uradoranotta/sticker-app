@@ -64,6 +64,21 @@
   flex-wrap: wrap;
 }
 
+.color-button {
+
+  width: 36px;
+
+  height: 36px;
+
+  border-radius: 50%;
+
+  border: 1px solid #ccc;
+
+  cursor: pointer;
+
+  flex-shrink: 0;
+}
+
     .weekdays {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
@@ -140,27 +155,34 @@
 
   <div class="calendar" id="calendar"></div>
 
-  <div class="buttons">
-    <button class="color-btn color1"
-onclick="selectColor('#ffe5e5', 5)">
-</button>
+  <div class="colors">
 
-<button class="color-btn color2"
-onclick="selectColor('#ffb3b3', 4)">
-</button>
+  <button class="color-button"
+    style="background:#ffe5e5"
+    onclick="selectColor('#ffe5e5',5)">
+  </button>
 
-<button class="color-btn color3"
-onclick="selectColor('#ff8080', 3)">
-</button>
+  <button class="color-button"
+    style="background:#ffb3b3"
+    onclick="selectColor('#ffb3b3',4)">
+  </button>
 
-<button class="color-btn color4"
-onclick="selectColor('##ff4d4d', 2)">
-</button>
+  <button class="color-button"
+    style="background:#ff8080"
+    onclick="selectColor('#ff8080',3)">
+  </button>
 
-<button class="color-btn color5"
-onclick="selectColor('#ff1a1a', 1)">
-</button>
-  </div>
+  <button class="color-button"
+    style="background:#ff4d4d"
+    onclick="selectColor('#ff4d4d',2)">
+  </button>
+
+  <button class="color-button"
+    style="background:#ff1a1a"
+    onclick="selectColor('#ff1a1a',1)">
+  </button>
+
+</div>
 
   <br><br>
 
@@ -244,8 +266,8 @@ sticker.style.height = "22px";
 
 sticker.style.borderRadius = "50%";
 
-sticker.style.backgroundColor =
-  selectedColor;
+sticker.style.backgroundColor = 
+selectedColor;
 
 sticker.style.position = "absolute";
 
