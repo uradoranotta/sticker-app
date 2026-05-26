@@ -107,14 +107,17 @@
 }
 
 .day {
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   border: 1px solid #ccc;
   border-radius: 10px;
   background: white;
 
   aspect-ratio: 1 / 1;
-
-  position: relative;
-  box-sizing: border-box;
 }
 
   </style>
@@ -231,18 +234,22 @@ function renderCalendar() {
 
       const sticker = document.createElement("div");
 
-      sticker.style.width = "22px";
-      sticker.style.height = "22px";
-      sticker.style.borderRadius = "50%";
-      sticker.style.backgroundColor =
-        savedData[String(i)].color;
+sticker.className = "sticker";
 
-      sticker.style.position = "absolute";
+sticker.style.width = "22px";
+sticker.style.height = "22px";
+sticker.style.borderRadius = "50%";
+sticker.style.backgroundColor =
+  savedData[String(i)].color;
+
+/* ★配置（ここが重要・完全安定版） */
+sticker.style.position = "absolute";
 sticker.style.bottom = "6px";
-sticker.style.left = "50%";
-sticker.style.transform = "translateX(-50%)";
+sticker.style.left = "0";
+sticker.style.right = "0";
+sticker.style.margin = "0 auto";
 
-      day.appendChild(sticker);
+day.appendChild(sticker);
     }
 
     day.onclick = () => {
