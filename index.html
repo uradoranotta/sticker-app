@@ -240,8 +240,7 @@ dateText.innerText = i;
 dateText.style.position = "absolute";
 dateText.style.top = "4px";
 dateText.style.left = "6px";
-dateText.style.fontSize = "14px";
-dateText.style.zIndex = "2";
+dateText.style.zIndex = "1";
 
 day.appendChild(dateText);
 
@@ -255,10 +254,12 @@ sticker.style.borderRadius = "50%";
 sticker.style.backgroundColor =
   savedData[String(i)].color;
 
+/* ★絶対安定配置 */
 sticker.style.position = "absolute";
 sticker.style.bottom = "6px";
 sticker.style.left = "50%";
 sticker.style.transform = "translateX(-50%)";
+sticker.style.zIndex = "2";
 
 day.appendChild(sticker);
     }
