@@ -108,16 +108,21 @@
 
 .day {
   position: relative;
-
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 
   border: 1px solid #ccc;
   border-radius: 10px;
   background: white;
 
   aspect-ratio: 1 / 1;
+}
+
+.dateText {
+  font-size: 14px;
+  z-index: 1;
 }
 
 .sticker {
@@ -231,11 +236,13 @@ function renderCalendar() {
   for (let i = 1; i <= daysInMonth; i++) {
 
     const day = document.createElement("div");
-    day.className = "day";
+day.className = "day";
 
-    const dateText = document.createElement("div");
-    dateText.innerText = i;
-    day.appendChild(dateText);
+const dateText = document.createElement("div");
+dateText.className = "dateText";
+dateText.innerText = i;
+
+day.appendChild(dateText);
 
     if (savedData[String(i)]) {
 
@@ -249,11 +256,11 @@ sticker.style.borderRadius = "50%";
 sticker.style.backgroundColor =
   savedData[String(i)].color;
 
-/* ★スマホ安定・完全中央固定 */
+/* ★完全分離配置（これが安定版） */
 sticker.style.position = "absolute";
 sticker.style.left = "50%";
-sticker.style.top = "50%";
-sticker.style.transform = "translate(-50%, 20%)"; 
+sticker.style.bottom = "6px";
+sticker.style.transform = "translateX(-50%)";
 
 day.appendChild(sticker);
     }
