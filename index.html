@@ -1,5 +1,22 @@
 <!DOCTYPE html>
 <html lang="ja">
+  <div id="styleSelector">
+
+  <h2>カレンダーを選択</h2>
+
+  <button onclick="selectStyle('line')">
+    線
+  </button>
+
+  <button onclick="selectStyle('round')">
+    角丸
+  </button>
+
+  <button onclick="selectStyle('corner')">
+    ┗
+  </button>
+
+</div>
 <head>
   <meta charset="UTF-8">
 
@@ -141,6 +158,41 @@
   transform: translate(-50%, 20%);
 }
 
+#styleSelector {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  background: white;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  gap: 20px;
+
+  z-index: 999;
+}
+
+.lineStyle .day {
+  border-radius: 0;
+}
+
+.roundStyle .day {
+  border-radius: 10px;
+}
+
+.cornerStyle .day {
+  border-left: 2px solid #ccc;
+  border-bottom: 2px solid #ccc;
+  border-top: none;
+  border-right: none;
+}
+
   </style>
 </head>
 
@@ -219,7 +271,39 @@ function getMonthKey(year, month) {
   return `${year}-${month}`;
 }
 
+function applyCalendarStyle(style) {
+
+  document.body.classList.remove(
+    "lineStyle",
+    "roundStyle",
+    "cornerStyle"
+  );
+
+  if (style === "line") {
+    document.body.classList.add("lineStyle");
+  }
+
+  if (style === "round") {
+    document.body.classList.add("roundStyle");
+  }
+
+  if (style === "corner") {
+    document.body.classList.add("cornerStyle");
+  }
+}
+
 function renderCalendar() {
+const savedStyle =
+  localStorage.getItem("calendarStyle");
+
+if (savedStyle) {
+
+  document.getElementById(
+    "styleSelector"
+  ).style.display = "none";
+
+  applyCalendarStyle(savedStyle);
+}
 
   calendar.innerHTML = "";
 
@@ -389,6 +473,21 @@ function downloadCSV() {
 
   URL.revokeObjectURL(url);
 }
+
+function selectStyle(style) {
+
+  localStorage.setItem(
+    "calendarStyle",
+    style
+  );
+
+  document.getElementById(
+    "styleSelector"
+  ).style.display = "none";
+
+  applyCalendarStyle(style);
+}
+
 
 renderCalendar();
 
