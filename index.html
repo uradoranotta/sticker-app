@@ -4,17 +4,31 @@
 
   <h2>カレンダーを選択</h2>
 
-  <button onclick="selectStyle('line')">
-    線
-  </button>
+  <div class="styleOption"
+       onclick="selectStyle('line')">
 
-  <button onclick="selectStyle('round')">
-    角丸
-  </button>
+    <img src="line.png">
+    <p>線</p>
 
-  <button onclick="selectStyle('corner')">
-    ┗
-  </button>
+  </div>
+
+  <div class="styleOption"
+       onclick="selectStyle('round')">
+
+    <img src="round.png">
+    <p>角丸</p>
+
+  </div>
+
+  <div class="styleOption"
+       onclick="selectStyle('corner')">
+
+    <img src="corner.png">
+    <p>┗</p>
+
+  </div>
+
+</div>
 
 </div>
 <head>
@@ -191,6 +205,24 @@
   border-bottom: 2px solid #ccc;
   border-top: none;
   border-right: none;
+}
+
+.styleOption {
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 8px;
+
+  cursor: pointer;
+}
+
+.styleOption img {
+
+  width: 120px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
 }
 
   </style>
