@@ -2,13 +2,19 @@
 <html lang="ja">
   <div id="styleSelector">
 
-  <h2>カレンダーを選択</h2>
+  <h2>
+  使用するカレンダーを選択してください
+</h2>
+
+<p>
+  ※選択後は変更できません
+</p>
 
   <div class="styleOption"
        onclick="selectStyle('line')">
 
     <img src="line.png">
-    <p>線</p>
+    <p></p>
 
   </div>
 
@@ -16,7 +22,7 @@
        onclick="selectStyle('round')">
 
     <img src="round.png">
-    <p>角丸</p>
+    <p></p>
 
   </div>
 
@@ -24,7 +30,8 @@
        onclick="selectStyle('corner')">
 
     <img src="corner.png">
-    <p>┗</p>
+    <p>
+    </p>
 
   </div>
 
@@ -223,6 +230,12 @@
   width: 120px;
   border: 1px solid #ccc;
   border-radius: 10px;
+}
+
+#styleSelector p {
+  font-size: 14px;
+  color: #666;
+  margin-top: -10px;
 }
 
   </style>
