@@ -4,6 +4,7 @@
 
   <h2>
     使用するカレンダーを選択してください
+    (3種類)
   </h2>
 
   <p>
@@ -181,6 +182,7 @@
 }
 
 #styleSelector {
+
   position: fixed;
   top: 0;
   left: 0;
@@ -190,12 +192,10 @@
 
   background: white;
 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  overflow-y: auto;
 
-  gap: 20px;
+  padding: 24px;
+  box-sizing: border-box;
 
   z-index: 999;
 }
@@ -260,37 +260,36 @@
 #styleOptions {
 
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 
-  justify-content: center;
-  align-items: flex-start;
+  align-items: center;
 
-  gap: 10px;
+  gap: 32px;
 
-  width: 100%;
+  margin-top: 24px;
 }
 
 
 #styleSelector p {
 
-  font-size: 13px;
+  font-size: 15px;
   color: #666;
-  margin-bottom: 24px;
+  text-align: center;
 }
 
 #styleSelector h2 {
 
-  font-size: 17px;
+  font-size: 20px;
   text-align: center;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .styleOption img {
 
-  width: 96px;
+  width: 220px;
 
   border: 1px solid #ccc;
-  border-radius: 10px;
+  border-radius: 14px;
 }
 
 .styleOption span {
