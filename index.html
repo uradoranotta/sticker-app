@@ -3,39 +3,40 @@
   <div id="styleSelector">
 
   <h2>
-  使用するカレンダーを選択してください
-</h2>
+    使用するカレンダーを選択してください
+  </h2>
 
-<p>
-  ※選択後は変更できません
-</p>
+  <p>
+    ※選択後は変更できません
+  </p>
 
-  <div class="styleOption"
-       onclick="selectStyle('line')">
+  <div id="styleOptions">
 
-    <img src="line.png">
-    <p>四角</p>
+    <div class="styleOption"
+         onclick="selectStyle('line')">
+
+      <img src="line.png">
+      <span>四角</span>
+
+    </div>
+
+    <div class="styleOption"
+         onclick="selectStyle('round')">
+
+      <img src="round.png">
+      <span>角丸</span>
+
+    </div>
+
+    <div class="styleOption"
+         onclick="selectStyle('corner')">
+
+      <img src="corner.png">
+      <span>左角</span>
+
+    </div>
 
   </div>
-
-  <div class="styleOption"
-       onclick="selectStyle('round')">
-
-    <img src="round.png">
-    <p>角丸</p>
-
-  </div>
-
-  <div class="styleOption"
-       onclick="selectStyle('corner')">
-
-    <img src="corner.png">
-    <p>左角
-    </p>
-
-  </div>
-
-</div>
 
 </div>
 <head>
